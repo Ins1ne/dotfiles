@@ -1,0 +1,607 @@
+"=============================================================================
+" Description: Ins1ne's .vimrc
+" Author: Aider Ibragimov <aider.ibragimov@gmail.com>
+" URL: https://github.com/Ins1ne/dotfiles.git
+"=============================================================================
+
+" Vundle setup
+set nocompatible " be iMproved
+filetype off     " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+if $COLORTERM == 'gnome-terminal'
+    set term=xterm-256color
+endif
+
+" let Vundle manage Vundle
+" required!
+Bundle 'git://github.com/gmarik/vundle.git'
+
+"=============================================================================
+" Bundles list:
+" NOTE: comments after Bundle command are not allowed...
+"=============================================================================
+
+" Interface
+    Bundle 'git://github.com/scrooloose/nerdtree.git'
+    Bundle 'git://github.com/ervandew/supertab.git'
+    Bundle 'git://github.com/wincent/Command-T.git'
+    Bundle 'git://github.com/majutsushi/tagbar.git'
+    " depends: http://ctags.sourceforge.net/
+    Bundle 'git://github.com/vim-scripts/IndexedSearch.git'
+    Bundle 'git://github.com/mattn/zencoding-vim.git'
+    Bundle 'git://github.com/msanders/snipmate.vim.git'
+    Bundle 'git://github.com/miripiruni/vimi-snippets.git'
+    Bundle 'git://github.com/scrooloose/nerdcommenter.git'
+    Bundle 'git://github.com/tpope/vim-surround.git'
+    Bundle 'git://github.com/tpope/vim-fugitive.git'
+    Bundle 'git://github.com/tsaleh/vim-align.git'
+    Bundle 'git://github.com/vim-scripts/bufexplorer.zip.git'
+    Bundle 'git://github.com/sjl/gundo.vim.git'
+    Bundle 'git://github.com/chrismetcalf/vim-yankring.git'
+    Bundle 'git://github.com/vim-scripts/mru.vim.git'
+    Bundle 'git://github.com/vim-scripts/grep.vim.git'
+    Bundle 'git://github.com/vim-scripts/repeat.vim.git'
+    Bundle 'git://github.com/scrooloose/syntastic.git'
+    Bundle 'git://github.com/godlygeek/tabular.git'
+    Bundle 'git://github.com/Lokaltog/vim-powerline.git'
+    Bundle 'git://github.com/jiangmiao/auto-pairs.git'
+    "Bundle 'git://github.com/vim-scripts/taglist.vim.git'
+    "Bundle 'git://github.com/vim-scripts/UltiSnips.git'
+    "Bundle 'git://github.com/mileszs/ack.vim.git'
+    "Bundle 'git://github.com/sjl/threesome.vim.git'
+
+" Colorschemes
+    Bundle 'git://github.com/altercation/vim-colors-solarized.git'
+    Bundle 'git://github.com/trapd00r/neverland-vim-theme.git'
+    Bundle 'git://github.com/sickill/vim-monokai.git'
+    Bundle 'git://github.com/tomasr/molokai.git'
+
+" HTML/HAML
+    Bundle 'git://github.com/othree/html5.vim.git'
+    Bundle 'git://github.com/hokaccha/vim-html5validator.git'
+    Bundle 'git://github.com/tpope/vim-haml.git'
+    Bundle 'git://github.com/gregsexton/MatchTag.git'
+    "Bundle 'git://github.com/tyru/operator-html-escape.vim.git'
+
+" CSS/LESS
+    Bundle 'git://github.com/hail2u/vim-css3-syntax.git'
+    Bundle 'git://github.com/ap/vim-css-color.git'
+    Bundle 'git://github.com/groenewege/vim-less.git'
+    Bundle 'git://github.com/miripiruni/vim-better-css-indent.git'
+    Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+
+" JavaScript
+    Bundle 'git://github.com/pangloss/vim-javascript.git'
+    Bundle 'git://github.com/itspriddle/vim-jquery.git'
+    Bundle 'git://github.com/kchmck/vim-coffee-script.git'
+
+" JSON
+    Bundle 'git://github.com/leshill/vim-json.git'
+
+" PHP
+    Bundle 'git://github.com/2072/PHP-Indenting-for-VIm.git'
+    Bundle 'git://github.com/vim-scripts/PDV--phpDocumentor-for-Vim.git'
+    "Bundle 'git://github.com/vim-scripts/php.vim--Garvin.git'
+
+" Python/Django
+    Bundle 'git://github.com/klen/python-mode.git'
+    "Bundle 'git://github.com/fs111/pydoc.vim.git'
+
+" CVS
+    Bundle 'git://github.com/motemen/git-vim.git'
+    Bundle 'git://github.com/vim-scripts/svndiff.git'
+    Bundle 'git://github.com/mattn/gist-vim.git'
+
+filetype plugin indent on     " required!
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-ap prove) removal of unused bundles
+" see :h vundle for more details or wiki for FAQ
+
+
+
+"=============================================================================
+" Interface
+"=============================================================================
+    set number                     " Show line numbers
+
+    set encoding=utf-8             " character encoding used inside Vim.
+    set fileencodings=utf-8,cp1251 " Возможные кодировки файлов и последовательность определения
+    set wildmode=list:longest,full " Автодополнение на манер zsh
+    set wildmenu                   " Саджест по <tab> в командной строке
+                                   " When 'wildmenu' is on, command-line completion operates in an enhanced
+                                   " mode.  On pressing 'wildchar' (usually <Tab>) to invoke completion,
+                                   " the possible matches are shown just above the command line, with the
+                                   " first match highlighted (overwriting the status line, if there is
+                                   " one).
+    set wildignore+=.hg,.git,.svn  " Version control
+    set wildignore+=*.DS_Store     " OSX bullshit
+    set wildignore+=*.pyc          " Python byte code
+    set title                      " window title
+                                   " the title of the window will be set to the value of 'titlestring'
+                                   " (if it is not empty), or to: filename [+=-] (path) - VIM
+    set showcmd                    " Show (partial) command in the last line of the screen
+                                   " Set this option off if your terminal is slow.
+                                   " In Visual mode the size of the selected area is shown:
+                                   " - When selecting characters within a line, the number of characters.
+                                   " If the number of bytes is different it is also displayed:              " 2-6 "
+                                   " means two characters and six bytes.
+                                   " - When selecting more than one line, the number of lines.
+                                   " - When selecting a block, the size in screen characters:
+                                   " {lines}x{columns}.
+    " set scrolljump=5
+    " set scrolloff=3
+    set scrolloff=999              " focus mode like in Writer app http://www.iawriter.com/
+    set showtabline=1              " Показывать вкладки табов только когда их больше одной
+    set list                       " display unprintable characters
+    set wrap                       " Включаем перенос строк (http://vimcasts.org/episodes/soft-wrapping-text/)
+    if version >= 703
+        set colorcolumn=80         " Подсвечиваем 80 столбец
+    end
+    set textwidth=80
+    set formatoptions-=o           " dont continue comments when pushing o/O
+    set linebreak                  " Перенос не разрывая слов
+    set autoindent                 " Копирует отступ от предыдущей строки
+    set smartindent                " Включаем 'умную' автоматическую расстановку отступов
+    set expandtab
+    set shiftwidth=4               " Размер сдвига при нажатии на клавиши << и >>
+    set tabstop=4                  " Размер табуляции
+    set softtabstop=4
+    set linespace=1                " add some line space for easy reading
+    set cursorline                 " Подсветка строки, в которой находится в данный момент курсор
+    "set t_Co=256                   " Кол-во цветов
+    set guicursor=                 " Отключаем мигание курсора
+    set splitbelow                 " новый сплит будет ниже текущего :sp
+    set splitright                 " новый сплит будет правее текущего :vsp
+    "set shortmess+=I              " не показывать intro screen
+    set mouseshape=s:udsizing,m:no " turn to a sizing arrow over the status lines
+    set mousehide                  " Hide the mouse when typing text
+    set mouse=a                    " enable using mouse
+    "set hidden                     " this allows to edit several files in the same time without having to save them
+    set undofile                   " store undo history in file
+    set undolevels=1000            " maximum number of changes that can be undone
+    set undoreload=10000           " maximum number lines to save for undo on a buffer reload
+    set confirm                    " Y-N-C prompt if closing with unsaved changes."
+
+    syntax on
+
+" Set no bells
+    set novisualbell
+    set t_vb=
+    set noerrorbells
+
+" Символ табуляции и конца строки
+    if has('multi_byte')
+        if version >= 700
+            set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮,nbsp:×
+        else
+            set listchars=tab:»\ ,trail:·,extends:>,precedes:<,nbsp:_
+        endif
+    endif
+
+" Символ, который будет показан перед перенесенной строкой
+    if has("linebreak")
+          let &sbr = nr2char(8618).' '  " Show ↪ at the beginning of wrapped lines
+    endif
+
+" Приводим в порядок status line
+    set laststatus=2
+
+" Создаем меню с кодировками
+    menu Encoding.UTF-8 :e ++enc=utf8 <CR>
+    menu Encoding.Windows-1251 :e ++enc=cp1251<CR>
+    menu Encoding.koi8-r :e ++enc=koi8-r<CR>
+    menu Encoding.cp866 :e ++enc=cp866<CR>
+
+" Spellcheck
+    if version >= 700
+        set spell spelllang=
+        set nospell " По умолчанию проверка орфографии выключена
+        menu Spell.off :setlocal spell spelllang= <cr>
+        menu Spell.Russian+English :setlocal spell spelllang=ru,en <cr>
+        menu Spell.Russian :setlocal spell spelllang=ru <cr>
+        menu Spell.English :setlocal spell spelllang=en <cr>
+        menu Spell.-SpellControl- :
+        menu Spell.Word\ Suggest<Tab>z= z=
+        menu Spell.Previous\ Wrong\ Word<Tab>[s [s
+        menu Spell.Next\ Wrong\ Word<Tab>]s ]s
+    endif
+
+" Фолдинг
+    " Всё, что нужно знать для начала:
+    " za - скрыть/открыть текущую складку.
+    " {zR, zM} - {открыть, скрыть} все складки.
+    " from https://github.com/sjl/dotfiles/blob/master/vim/.vimrc
+    function! MyFoldText()
+        let line = getline(v:foldstart)
+
+        let nucolwidth = &fdc + &number * &numberwidth
+        let windowwidth = winwidth(0) - nucolwidth - 3
+        let foldedlinecount = v:foldend - v:foldstart
+
+        " expand tabs into spaces
+        let onetab = strpart(' ', 0, &tabstop)
+        let line = substitute(line, '\t', onetab, 'g')
+
+        let line = strpart(line, 0, windowwidth - 2 - len(foldedlinecount))
+        let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+        return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+    endfunction
+    set foldtext=MyFoldText()
+
+    set foldcolumn=0        " Ширина строки где располагается фолдинг
+    set foldmethod=indent   " Фолдинг по отступам
+    set foldnestmax=10      " Глубина фолдинга 10 уровней
+    set nofoldenable        " Не фолдить по умолчанию
+    set foldlevel=1         " This is just what i use
+    set fillchars="fold: "  " remove the extrafills --------
+
+" Search
+    set incsearch   " При поиске перескакивать на найденный текст в процессе набора строки
+    set hlsearch    " Включаем подсветку выражения, которое ищется в тексте
+    set ignorecase  " Игнорировать регистр букв при поиске
+    set smartcase   " Override the 'ignorecase' if the search pattern contains upper case characters
+    set gdefault    " Включает флаг g в командах замены, типа :%s/a/b/
+
+" Не показывать парную скобку
+    let loaded_matchparen=1 " перестает прыгать на парную скобку, показывая где она. +100 к скорости
+    set noshowmatch " Don't show pair <> in HTML
+
+" Open Rgrep results in new tab
+    set switchbuf+=usetab,newtab
+
+" Backspacing settings
+    " start     allow backspacing over the start of insert;
+    "           CTRL-W and CTRL-U stop once at the start of insert.
+    " indent    allow backspacing over autoindent
+    " eol       allow backspacing over line breaks (join lines)
+    set backspace=indent,eol,start
+
+" Backup и swp файлы
+    set backupdir=~/.vim/bac//,/tmp " Директория для backup файлов
+    set directory=~/.vim/swp//,/tmp " Директория для swp файлов
+
+    "set modelines=0
+    set ttyfast
+    set ruler
+
+    set lazyredraw " Prevent from painful lags
+
+"=============================================================================
+" Key bindings
+"=============================================================================
+
+" Shortcut's
+
+    let mapleader = "," " мапим <Leader> на запятую. По умолчанию <Leader> это обратный слэш \
+
+" ,r
+    " Search and replace in all opened buffers http://vim.wikia.com/wiki/VimTip382
+    function! Replace()
+        let s:word = input("Replace " . expand('<cword>') . " with:")
+        :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/gce'
+        :unlet! s:word
+    endfunction
+    map <Leader>r :call Replace()<CR>
+
+" <Esc><Esc>
+    " Clear the search highlight in Normal mode
+    nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
+
+" < >
+    vnoremap < <gv
+    vnoremap > >gv
+
+" ,p
+    " Вставлять код извне без этой строчки проблематично, без нее начитается
+    " бешеный реформат кода
+    set pastetoggle=<F9>
+
+" ,s
+    nnoremap <leader>s :%s//<left>
+
+" Move lines
+    " Move single lines
+    nmap <C-S-k> ddkP
+    nmap <C-S-j> ddp
+    nmap <C-Up> ddkP
+    nmap <C-Down> ddp
+    " Move multiple lines http://www.vim.org/scripts/script.php?script_id=1590
+    vmap <C-S-k> xkP'[V']
+    vmap <C-S-j> xp'[V']
+    vmap <C-Up> xkP`[V`]
+    vmap <C-Down> xp`[V`]
+
+" Y copy full row
+    nnoremap Y Vy
+
+" Pasting with correct indention
+    "nmap p p=`]
+    "nmap P P=`[
+
+" Disable <Arrow keys>
+    " Warning: nightmare mode!
+    "inoremap <Up> <NOP>
+    "inoremap <Down> <NOP>
+    "inoremap <Left> <NOP>
+    "inoremap <Right> <NOP>
+    "noremap <Up> <NOP>
+    "noremap <Down> <NOP>
+    "noremap <Left> <NOP>
+    "noremap <Right> <NOP>
+
+" Let move with hjkl in Insert mode when pressed <Ctrl>
+    imap <C-h> <C-o>h
+    imap <C-j> <C-o>j
+    imap <C-k> <C-o>k
+    imap <C-l> <C-o>l
+
+" ,v
+    " Pressing ,v opens the .vimrc in a new tab
+    nmap <leader>v :tabedit $MYVIMRC<CR>
+
+" <Space> = <PageDown> Как в браузерах
+    "nmap <Space> <PageDown>
+
+" n и N
+    " Search results always in center
+    nmap n nzz
+    nmap N Nzz
+    nmap * *zz
+    nmap # #zz
+    nmap g* g*zz
+    nmap g# g#zz
+
+" Don't skip wrap lines
+    " Еще раз и попонятнее:
+    " если строка n длиная и не влезла в окно — она перенесется на
+    " следующую (wrap on). Шокткаты ниже нужны, чтобы попасть
+    " на каждую псевдострочку этой врапнутой строки.
+    noremap j gj
+    noremap k gk
+
+" gf открывает файл под курсором в вертикальном сплите
+    " (по дефолту gf открывает файл в том же буфере)
+    nmap gf :vertical wincmd f<CR>
+
+" Создаем пустой сплит относительно текущего
+    nmap <Leader><left>  :leftabove  vnew<CR>
+    nmap <Leader><right> :rightbelow vnew<CR>
+    nmap <Leader><up>    :leftabove  new<CR>
+    nmap <Leader><down>  :rightbelow new<CR>
+
+" Утащить содержимое индентированной строки, но не захватив с собой
+" начальные и конечные \s
+    "nnoremap ,y ^yg_"_dd
+
+" ,c
+    " camelCase => camel_case
+    vnoremap <silent> <Leader>c :s/\v\C(([a-z]+)([A-Z]))/\2_\l\3/g<CR>
+
+" Fix Trailing White Space
+    map <leader>ts :%s/\s\+$//e<CR>
+
+" ,bl show buffers
+    nmap <Leader>bl :ls<cr>:b
+
+" ,bp prev buffer
+    nmap <Leader>bp :bp<cr>
+
+" ,bn next buffer
+    nmap <Leader>bn :bn<cr>
+
+" ,u Change case to uppercase
+    nnoremap <Leader>u gUiw
+    inoremap <Leader>u <esc>gUiwea
+
+" В коммандном режиме разрешить прыгать в конец и начало строки,
+" как в консоли
+    cnoremap <c-e> <end>
+    imap     <c-e> <c-o>$
+    cnoremap <c-a> <home>
+    imap     <c-a> <c-o>^
+
+" ,b
+    vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+" ,w
+    map <Leader>w <C-w>w
+
+" Ctrl+s
+    map <C-s> <esc>:w<CR>
+    imap <C-s> <esc>:w<CR>
+
+" ,n
+    " Edit another file in the same directory as the current file uses expression to extract path from current file's path
+    map <Leader>n :vnew <C-R>=expand("%:p:h") . '/'<CR>
+
+" Bind :Q to :q
+    command! Q q
+
+" Open MRU files Ctrl+E
+    map <c-e> :MRU<CR>
+
+" Environment
+    set history=1000 " store lots of :cmdline history
+    "cmap w!! %!sudo tee > /dev/null % " save file with root permissions"
+    command! W exec 'w !sudo tee % > /dev/null' | e!
+
+" Highlight changed lines
+    noremap <C-D> :call Svndiff("next")<CR>
+    noremap <C-G> :call Svndiff("clear")<CR>
+    hi DiffAdd      ctermfg=0 ctermbg=2 guibg='green'
+    hi DiffDelete   ctermfg=0 ctermbg=1 guibg='red'
+    hi DiffChange   ctermfg=0 ctermbg=3 guibg='yellow'
+
+" Key mapping for tab navigation
+    nmap <Tab> gt
+    nmap <S-Tab> gT
+
+" Generate PHP Doc
+    inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+    nnoremap <C-P> :call PhpDocSingle()<CR>
+    vnoremap <C-P> :call PhpDocRange()<CR>
+
+" Key mapping for Gundo
+    nnoremap <F4> :GundoToggle<CR>
+
+" Key mapping for vimgrep result navigation
+    map <A-o> :copen<CR>
+    map <A-q> :cclose<CR>
+    map <A-j> :cnext<CR>
+    map <A-k> :cprevious<CR>
+
+" Select html element
+    nnoremap <leader>ft Vatzf
+
+" System clipboard interaction
+" From https://github.com/henrik/dotfiles/blob/master/vim/config/mappings.vim
+    noremap <leader>y "*y
+    noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+
+" Panic Button
+    nnoremap <F8> mzggg?G`z`"
+
+"=============================================================================
+" Plugins configuration
+"=============================================================================
+
+" Command-T configuration
+    let g:CommandTMaxHeight=10
+    let g:CommandTMatchWindowAtTop=1
+
+" Colorscheme
+    set background=dark
+    colorscheme Monokai
+
+" NERDTree
+    nmap <F2> :NERDTreeToggle<CR>
+
+    let NERDTreeShowBookmarks=1
+    let NERDTreeChDirMode=2
+    let NERDTreeQuitOnOpen=1
+    let NERDTreeShowHidden=0
+    let NERDTreeKeepTreeInNewTab=0
+    let NERDTreeMinimalUI=1 " Disables display of the 'Bookmarks' label and 'Press ? for help' text.
+    let NERDTreeDirArrows=1 " Tells the NERD tree to use arrows instead of + ~ chars when displaying directories.
+    let NERDTreeBookmarksFile=$HOME . '/.vim/.NERDTreeBookmarks'
+
+" Tagbar settings
+    nmap <F3> :TagbarToggle<CR>
+
+    let g:tagbar_autofocus=1
+    let g:tagbar_autoshowtag=1
+    let g:tagbar_compact= 1
+    let g:tagbar_autoclose=1
+
+    let g:tagbar_type_php = {
+        \ 'ctagstype' : 'php',
+        \ 'kinds'     : [
+            \ 'i:interfaces',
+            \ 'c:classes',
+            \ 'd:constant definitions',
+            \ 'f:functions',
+            \ 'j:javascript functions:1'
+        \ ]
+      \ }
+
+" Zen Coding
+    let g:user_zen_settings = {
+      \  'php' : {
+      \    'extends' : 'html',
+      \    'filters' : 'c',
+      \  },
+      \  'xml' : {
+      \    'extends' : 'html',
+      \  },
+      \  'haml' : {
+      \    'extends' : 'html',
+      \  },
+      \}
+
+" Strip trailing whitespace
+    function! <SID>StripTrailingWhitespaces()
+        " Preparation: save last search, and cursor position.
+        let _s=@/
+        let l = line(".")
+        let c = col(".")
+        " Do the business:
+        %s/\s\+$//e
+        " Clean up: restore previous search history, and cursor position
+        let @/=_s
+        call cursor(l, c)
+    endfunction
+
+    autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" PHP formatting
+    let g:PHP_removeCRwhenUnix=1
+    let g:PHP_BracesAtCodeLevel=0
+    let g:PHP_vintage_case_default_indent=1
+
+    let g:AutoPairsMapCR=0
+
+" Customize python-mode
+    " Set key 'R' for run python code
+        let g:pymode_run_key='R'
+
+"=============================================================================
+" Auto commands
+"=============================================================================
+
+" Загрузка предыдущей сессии
+    "set viminfo='10,\"100,:20,%,n~/.viminfo
+    "" Устанавливаем курсор в файле на место, где он был при закрытии этого файла
+    "au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+" AutoReload .vimrc
+    " from http://vimcasts.org/episodes/updating-your-vimrc-file-on-the-fly/
+    " Source the vimrc file after saving it
+    if has("autocmd")
+      autocmd! bufwritepost .vimrc source $MYVIMRC
+    endif
+
+" Highlight cursor line only in current window
+    augroup cline
+        au!
+        au WinLeave * set nocursorline
+        au WinEnter * set cursorline
+    augroup END
+
+" Save when change tab
+    au WinLeave * :silent! wall
+
+" Create folder .vim im project root
+    function! CreateProjectsVimFolder()
+        if (!isdirectory($PWD . "/.vim"))
+            call mkdir($PWD . "/.vim") |
+        endif
+    endfunction
+
+    map <F5> :call CreateProjectsVimFolder()<CR>
+
+" Go to last file(s) if invoked without arguments, restore previous state
+    " http://vimcastsim.wikia.com/wiki/Open_the_last_edited_file
+    " http://vim.wikia.com/wiki/Restore_state_of_edited_files_when_reopened
+     autocmd VimLeave * nested if (isdirectory($PWD . "/.vim")) |
+         \ execute "mksession! " . $PWD . "/.vim/session.vim" |
+         \ execute "wviminfo! " . $PWD . "/.vim/viminfo.vim" |
+         \ if(!isdirectory($PWD . "/.vim/undodir")) |
+         \ call mkdir($PWD . "/.vim/undodir") |
+         \ endif |
+         \ endif
+     autocmd VimEnter * nested if argc() == 0 && filereadable($PWD . "/.vim/session.vim") |
+         \ execute "source " . $PWD . "/.vim/session.vim" |
+         \ endif |
+         \ if argc() == 0 && filereadable($PWD . "/.vim/viminfo.vim") |
+         \ execute "rviminfo" . $PWD . "/.vim/viminfo.vim" |
+         \ endif |
+         \ execute "set undodir=" . $PWD . "/.vim/undodir"
+
+" Auto change the directory to the current file I'm working on
+    "autocmd BufEnter * lcd %:p:h
