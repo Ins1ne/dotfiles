@@ -27,7 +27,7 @@ Bundle 'git://github.com/gmarik/vundle.git'
 " Interface
     Bundle 'git://github.com/scrooloose/nerdtree.git'
     Bundle 'git://github.com/ervandew/supertab.git'
-    Bundle 'git://github.com/wincent/Command-T.git'
+    Bundle 'git://github.com/kien/ctrlp.vim.git'
     Bundle 'git://github.com/majutsushi/tagbar.git'
     " depends: http://ctags.sourceforge.net/
     Bundle 'git://github.com/vim-scripts/IndexedSearch.git'
@@ -48,7 +48,6 @@ Bundle 'git://github.com/gmarik/vundle.git'
     Bundle 'git://github.com/godlygeek/tabular.git'
     Bundle 'git://github.com/Lokaltog/vim-powerline.git'
     Bundle 'git://github.com/jiangmiao/auto-pairs.git'
-    "Bundle 'git://github.com/vim-scripts/taglist.vim.git'
     "Bundle 'git://github.com/vim-scripts/UltiSnips.git'
     "Bundle 'git://github.com/mileszs/ack.vim.git'
     "Bundle 'git://github.com/sjl/threesome.vim.git'
@@ -84,7 +83,6 @@ Bundle 'git://github.com/gmarik/vundle.git'
 " PHP
     Bundle 'git://github.com/2072/PHP-Indenting-for-VIm.git'
     Bundle 'git://github.com/vim-scripts/PDV--phpDocumentor-for-Vim.git'
-    "Bundle 'git://github.com/vim-scripts/php.vim--Garvin.git'
 
 " Python/Django
     Bundle 'git://github.com/klen/python-mode.git'
@@ -92,7 +90,6 @@ Bundle 'git://github.com/gmarik/vundle.git'
 
 " CVS
     Bundle 'git://github.com/motemen/git-vim.git'
-    Bundle 'git://github.com/vim-scripts/svndiff.git'
     Bundle 'git://github.com/mattn/gist-vim.git'
 
 filetype plugin indent on     " required!
@@ -345,9 +342,6 @@ filetype plugin indent on     " required!
     " Pressing ,v opens the .vimrc in a new tab
     nmap <leader>v :tabedit $MYVIMRC<CR>
 
-" <Space> = <PageDown> Как в браузерах
-    "nmap <Space> <PageDown>
-
 " n и N
     " Search results always in center
     nmap n nzz
@@ -413,7 +407,7 @@ filetype plugin indent on     " required!
     map <Leader>w <C-w>w
 
 " Ctrl+s
-    map <C-s> <esc>:w<CR>
+    map  <C-s> <esc>:w<CR>
     imap <C-s> <esc>:w<CR>
 
 " ,n
@@ -431,21 +425,12 @@ filetype plugin indent on     " required!
     "cmap w!! %!sudo tee > /dev/null % " save file with root permissions"
     command! W exec 'w !sudo tee % > /dev/null' | e!
 
-" Highlight changed lines
-    noremap <C-D> :call Svndiff("next")<CR>
-    noremap <C-G> :call Svndiff("clear")<CR>
-    hi DiffAdd      ctermfg=0 ctermbg=2 guibg='green'
-    hi DiffDelete   ctermfg=0 ctermbg=1 guibg='red'
-    hi DiffChange   ctermfg=0 ctermbg=3 guibg='yellow'
-
 " Key mapping for tab navigation
     nmap <Tab> gt
     nmap <S-Tab> gT
 
 " Generate PHP Doc
     inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
-    nnoremap <C-P> :call PhpDocSingle()<CR>
-    vnoremap <C-P> :call PhpDocRange()<CR>
 
 " Key mapping for Gundo
     nnoremap <F4> :GundoToggle<CR>
@@ -467,13 +452,12 @@ filetype plugin indent on     " required!
 " Panic Button
     nnoremap <F8> mzggg?G`z`"
 
+" Fold/unfold current level
+    nnoremap <Space> za
+
 "=============================================================================
 " Plugins configuration
 "=============================================================================
-
-" Command-T configuration
-    let g:CommandTMaxHeight=10
-    let g:CommandTMatchWindowAtTop=1
 
 " Colorscheme
     set background=dark
@@ -554,11 +538,6 @@ filetype plugin indent on     " required!
 " Auto commands
 "=============================================================================
 
-" Загрузка предыдущей сессии
-    "set viminfo='10,\"100,:20,%,n~/.viminfo
-    "" Устанавливаем курсор в файле на место, где он был при закрытии этого файла
-    "au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-
 " AutoReload .vimrc
     " from http://vimcasts.org/episodes/updating-your-vimrc-file-on-the-fly/
     " Source the vimrc file after saving it
@@ -583,7 +562,7 @@ filetype plugin indent on     " required!
         endif
     endfunction
 
-    map <F5> :call CreateProjectsVimFolder()<CR>
+    map <F6> :call CreateProjectsVimFolder()<CR>
 
 " Go to last file(s) if invoked without arguments, restore previous state
     " http://vimcastsim.wikia.com/wiki/Open_the_last_edited_file
@@ -602,6 +581,3 @@ filetype plugin indent on     " required!
          \ execute "rviminfo" . $PWD . "/.vim/viminfo.vim" |
          \ endif |
          \ execute "set undodir=" . $PWD . "/.vim/undodir"
-
-" Auto change the directory to the current file I'm working on
-    "autocmd BufEnter * lcd %:p:h
