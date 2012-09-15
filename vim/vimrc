@@ -25,6 +25,7 @@ Bundle 'git://github.com/gmarik/vundle.git'
 "=============================================================================
 
 " Interface
+    Bundle 'git://github.com/Ins1ne/vim-project.git'
     Bundle 'git://github.com/scrooloose/nerdtree.git'
     Bundle 'git://github.com/ervandew/supertab.git'
     Bundle 'git://github.com/kien/ctrlp.vim.git'
@@ -86,6 +87,7 @@ Bundle 'git://github.com/gmarik/vundle.git'
 
 " Python/Django
     Bundle 'git://github.com/klen/python-mode.git'
+    Bundle 'git://github.com/juvenn/mustache.vim.git'
     "Bundle 'git://github.com/fs111/pydoc.vim.git'
 
 " CVS
@@ -555,29 +557,3 @@ filetype plugin indent on     " required!
 " Save when change tab
     au WinLeave * :silent! wall
 
-" Create folder .vim im project root
-    function! CreateProjectsVimFolder()
-        if (!isdirectory($PWD . "/.vim"))
-            call mkdir($PWD . "/.vim") |
-        endif
-    endfunction
-
-    map <F6> :call CreateProjectsVimFolder()<CR>
-
-" Go to last file(s) if invoked without arguments, restore previous state
-    " http://vimcastsim.wikia.com/wiki/Open_the_last_edited_file
-    " http://vim.wikia.com/wiki/Restore_state_of_edited_files_when_reopened
-     autocmd VimLeave * nested if (isdirectory($PWD . "/.vim")) |
-         \ execute "mksession! " . $PWD . "/.vim/session.vim" |
-         \ execute "wviminfo! " . $PWD . "/.vim/viminfo.vim" |
-         \ if(!isdirectory($PWD . "/.vim/undodir")) |
-         \ call mkdir($PWD . "/.vim/undodir") |
-         \ endif |
-         \ endif
-     autocmd VimEnter * nested if argc() == 0 && filereadable($PWD . "/.vim/session.vim") |
-         \ execute "source " . $PWD . "/.vim/session.vim" |
-         \ endif |
-         \ if argc() == 0 && filereadable($PWD . "/.vim/viminfo.vim") |
-         \ execute "rviminfo" . $PWD . "/.vim/viminfo.vim" |
-         \ endif |
-         \ execute "set undodir=" . $PWD . "/.vim/undodir"
