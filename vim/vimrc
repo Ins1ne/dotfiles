@@ -1,7 +1,7 @@
 "=============================================================================
 " Description: Ins1ne's .vimrc
-" Author: Aider Ibragimov <aider.ibragimov@gmail.com>
-" URL: https://github.com/Ins1ne/dotfiles.git
+" Author:      Aider Ibragimov <aider.ibragimov@gmail.com>
+" URL:         https://github.com/Ins1ne/dotfiles.git
 "=============================================================================
 
 " Vundle setup
@@ -534,7 +534,10 @@ filetype plugin indent on     " required!
 
 " Customize python-mode
     " Set key 'R' for run python code
-        let g:pymode_run_key='R'
+    let g:pymode_run_key='R'
+
+" Powerline
+    let Powerline_symbols = 'fancy'
 
 "=============================================================================
 " Auto commands
