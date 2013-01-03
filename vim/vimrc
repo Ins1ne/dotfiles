@@ -39,7 +39,7 @@ Bundle 'git://github.com/gmarik/vundle.git'
     Bundle 'git://github.com/tpope/vim-surround.git'
     Bundle 'git://github.com/tpope/vim-fugitive.git'
     Bundle 'git://github.com/tsaleh/vim-align.git'
-    Bundle 'git://github.com/vim-scripts/bufexplorer.zip.git'
+    "Bundle 'git://github.com/vim-scripts/bufexplorer.zip.git'
     Bundle 'git://github.com/sjl/gundo.vim.git'
     Bundle 'git://github.com/chrismetcalf/vim-yankring.git'
     Bundle 'git://github.com/vim-scripts/mru.vim.git'
@@ -162,7 +162,7 @@ filetype plugin indent on     " required!
     set mousehide                  " Hide the mouse when typing text
     set mouse=a                    " enable using mouse
     "set hidden                     " this allows to edit several files in the same time without having to save them
-    set undofile                   " store undo history in file
+    "set undofile                   " store undo history in file
     set undolevels=1000            " maximum number of changes that can be undone
     set undoreload=10000           " maximum number lines to save for undo on a buffer reload
     set confirm                    " Y-N-C prompt if closing with unsaved changes."
@@ -448,8 +448,8 @@ filetype plugin indent on     " required!
 
 " System clipboard interaction
 " From https://github.com/henrik/dotfiles/blob/master/vim/config/mappings.vim
-    noremap <leader>y "*y
-    noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+    noremap <leader>y "+y
+    noremap <leader>p :set paste<CR>:put +<CR>:set nopaste<CR>
 
 " Panic Button
     nnoremap <F8> mzggg?G`z`"
@@ -560,3 +560,4 @@ filetype plugin indent on     " required!
 " Save when change tab
     au WinLeave * :silent! wall
 
+    autocmd BufRead,BufNewFile *.html set filetype=htmldjango
