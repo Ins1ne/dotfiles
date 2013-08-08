@@ -32,26 +32,39 @@ Bundle 'git://github.com/gmarik/vundle.git'
     Bundle 'git://github.com/majutsushi/tagbar.git'
     " depends: http://ctags.sourceforge.net/
     Bundle 'git://github.com/vim-scripts/IndexedSearch.git'
-    Bundle 'git://github.com/mattn/zencoding-vim.git'
-    Bundle 'git://github.com/msanders/snipmate.vim.git'
-    Bundle 'git://github.com/miripiruni/vimi-snippets.git'
+    Bundle 'git://github.com/mattn/emmet-vim.git'
+    "Bundle 'git://github.com/msanders/snipmate.vim.git'
+    "Bundle 'git://github.com/ervandew/snipmate.vim.git'
+    "Bundle 'git://github.com/miripiruni/vimi-snippets.git'
     Bundle 'git://github.com/scrooloose/nerdcommenter.git'
     Bundle 'git://github.com/tpope/vim-surround.git'
     Bundle 'git://github.com/tpope/vim-fugitive.git'
     Bundle 'git://github.com/tsaleh/vim-align.git'
     "Bundle 'git://github.com/vim-scripts/bufexplorer.zip.git'
     Bundle 'git://github.com/sjl/gundo.vim.git'
-    Bundle 'git://github.com/chrismetcalf/vim-yankring.git'
+    "Bundle 'git://github.com/vim-scripts/YankRing.vim.git'
     Bundle 'git://github.com/vim-scripts/mru.vim.git'
     Bundle 'git://github.com/vim-scripts/grep.vim.git'
     Bundle 'git://github.com/vim-scripts/repeat.vim.git'
     Bundle 'git://github.com/scrooloose/syntastic.git'
     Bundle 'git://github.com/godlygeek/tabular.git'
     Bundle 'git://github.com/Lokaltog/vim-powerline.git'
+    "Bundle 'git://github.com/Lokaltog/powerline.git'
     Bundle 'git://github.com/jiangmiao/auto-pairs.git'
+    "Bundle 'git://github.com/Shougo/neocomplete.git'
+    "Bundle 'git://github.com/Shougo/neocomplcache.git'
+    "Bundle 'git://github.com/Shougo/neosnippet.vim.git'
+    Bundle 'git://github.com/Valloric/YouCompleteMe.git'
+    Bundle 'git://github.com/Valloric/ListToggle.git'
+    Bundle 'git://github.com/tomtom/tcomment_vim.git'
+    Bundle 'git://github.com/terryma/vim-multiple-cursors.git'
+    Bundle 'git://github.com/Lokaltog/vim-easymotion.git'
     "Bundle 'git://github.com/vim-scripts/UltiSnips.git'
-    "Bundle 'git://github.com/mileszs/ack.vim.git'
-    "Bundle 'git://github.com/sjl/threesome.vim.git'
+    Bundle 'git://github.com/SirVer/ultisnips.git'
+    Bundle 'git://github.com/mileszs/ack.vim.git'
+    Bundle 'git://github.com/sjl/threesome.vim.git'
+    Bundle 'git://github.com/vim-scripts/vim-auto-save.git'
+
 
 " Colorschemes
     Bundle 'git://github.com/altercation/vim-colors-solarized.git'
@@ -60,10 +73,11 @@ Bundle 'git://github.com/gmarik/vundle.git'
     Bundle 'git://github.com/tomasr/molokai.git'
 
 " HTML/HAML
-    Bundle 'git://github.com/othree/html5.vim.git'
-    Bundle 'git://github.com/hokaccha/vim-html5validator.git'
+    "Bundle 'git://github.com/othree/html5.vim.git'
+    "Bundle 'git://github.com/hokaccha/vim-html5validator.git'
     Bundle 'git://github.com/tpope/vim-haml.git'
     Bundle 'git://github.com/gregsexton/MatchTag.git'
+    Bundle 'git://github.com/saltstack/salt-vim.git'
     "Bundle 'git://github.com/tyru/operator-html-escape.vim.git'
 
 " CSS/LESS
@@ -445,6 +459,8 @@ filetype plugin indent on     " required!
 
 " Select html element
     nnoremap <leader>ft Vatzf
+" Enabling clipboard
+    set clipboard=unnamed
 
 " System clipboard interaction
 " From https://github.com/henrik/dotfiles/blob/master/vim/config/mappings.vim
@@ -475,6 +491,7 @@ filetype plugin indent on     " required!
     let NERDTreeKeepTreeInNewTab=0
     let NERDTreeMinimalUI=1 " Disables display of the 'Bookmarks' label and 'Press ? for help' text.
     let NERDTreeDirArrows=1 " Tells the NERD tree to use arrows instead of + ~ chars when displaying directories.
+    let NERDTreeIgnore=['\.pyc','\~$','\.swo$','\.swp$','\.git$','\.hg','\.svn','\.bzr']
     let NERDTreeBookmarksFile=$HOME . '/.vim/.NERDTreeBookmarks'
 
 " Tagbar settings
@@ -535,9 +552,36 @@ filetype plugin indent on     " required!
 " Customize python-mode
     " Set key 'R' for run python code
     let g:pymode_run_key='R'
+    let g:pymode_lint_maxheight = 3
+    let g:pymode_lint_ignore = "E501"
 
 " Powerline
     let Powerline_symbols = 'fancy'
+
+" YouCompleteMe
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_semantic_triggers =  {
+    \   'c' : ['->', '.'],
+    \   'objc' : ['->', '.'],
+    \   'ocaml' : ['.', '#'],
+    \   'cpp,objcpp' : ['->', '.', '::'],
+    \   'perl' : ['->'],
+    \   'php' : ['->', '::'],
+    \   'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.'],
+    \   'ruby' : ['.', '::'],
+    \   'lua' : ['.', ':'],
+    \   'erlang' : [':'],
+    \ }
+    nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Autosave
+    let g:auto_save = 1
+
+" Neocomplcache
+"let g:neocomplcache_enable_at_startup = 1
+
 
 "=============================================================================
 " Auto commands
@@ -547,7 +591,7 @@ filetype plugin indent on     " required!
     " from http://vimcasts.org/episodes/updating-your-vimrc-file-on-the-fly/
     " Source the vimrc file after saving it
     if has("autocmd")
-      autocmd! bufwritepost .vimrc source $MYVIMRC
+        autocmd! bufwritepost .vimrc source $MYVIMRC
     endif
 
 " Highlight cursor line only in current window
@@ -559,5 +603,13 @@ filetype plugin indent on     " required!
 
 " Save when change tab
     au WinLeave * :silent! wall
-
     autocmd BufRead,BufNewFile *.html set filetype=htmldjango
+
+" Comment lines with cmd+/
+map <Leader>/ :TComment<cr>
+vmap <Leader>/ :TComment<cr>gv
+
+" Suggest popup colors
+highlight Pmenu ctermbg=8 guibg=#606060
+highlight PmenuSel ctermbg=1 guifg=#dddd00 guibg=#1f82cd
+highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
