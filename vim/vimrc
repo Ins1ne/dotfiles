@@ -48,13 +48,10 @@ Bundle 'git://github.com/gmarik/vundle.git'
     Bundle 'git://github.com/vim-scripts/repeat.vim.git'
     Bundle 'git://github.com/scrooloose/syntastic.git'
     Bundle 'git://github.com/godlygeek/tabular.git'
-    Bundle 'git://github.com/Lokaltog/vim-powerline.git'
-    "Bundle 'git://github.com/Lokaltog/powerline.git'
+    " Bundle 'git://github.com/Lokaltog/vim-powerline.git'
+    Bundle 'git://github.com/bling/vim-airline.git'
     Bundle 'git://github.com/jiangmiao/auto-pairs.git'
-    "Bundle 'git://github.com/Shougo/neocomplete.git'
-    "Bundle 'git://github.com/Shougo/neocomplcache.git'
-    "Bundle 'git://github.com/Shougo/neosnippet.vim.git'
-    Bundle 'git://github.com/Valloric/YouCompleteMe.git'
+    Bundle 'git://github.com/davidhalter/jedi-vim.git'
     Bundle 'git://github.com/Valloric/ListToggle.git'
     Bundle 'git://github.com/tomtom/tcomment_vim.git'
     Bundle 'git://github.com/terryma/vim-multiple-cursors.git'
@@ -553,34 +550,33 @@ filetype plugin indent on     " required!
     " Set key 'R' for run python code
     let g:pymode_run_key='R'
     let g:pymode_lint_maxheight = 3
-    let g:pymode_lint_ignore = "E501"
+    let g:pymode_lint_ignore = "E501,C0110,C0301"
+    let g:pymode_rope = 0
 
 " Powerline
     let Powerline_symbols = 'fancy'
 
-" YouCompleteMe
-    let g:ycm_autoclose_preview_window_after_completion = 1
-    let g:ycm_autoclose_preview_window_after_insertion = 1
-    let g:ycm_collect_identifiers_from_tags_files = 1
-    let g:ycm_semantic_triggers =  {
-    \   'c' : ['->', '.'],
-    \   'objc' : ['->', '.'],
-    \   'ocaml' : ['.', '#'],
-    \   'cpp,objcpp' : ['->', '.', '::'],
-    \   'perl' : ['->'],
-    \   'php' : ['->', '::'],
-    \   'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.'],
-    \   'ruby' : ['.', '::'],
-    \   'lua' : ['.', ':'],
-    \   'erlang' : [':'],
-    \ }
-    nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" Airline
+    let g:airline_powerline_fonts = 1
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+
+    let g:airline_left_sep = '⮀'
+    let g:airline_left_alt_sep = '⮁'
+    let g:airline_right_sep = '⮂'
+    let g:airline_right_alt_sep = '⮃'
+    let g:airline_symbols.branch = '⭠'
+    let g:airline_symbols.readonly = '⭤'
+    let g:airline_symbols.linenr = '⭡'
+
+    let g:airline_symbols.space = "\ua0"
+
+    let g:airline_theme='powerlineish'
+
 
 " Autosave
     let g:auto_save = 1
-
-" Neocomplcache
-"let g:neocomplcache_enable_at_startup = 1
 
 
 "=============================================================================
