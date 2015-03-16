@@ -51,13 +51,13 @@ Bundle 'git://github.com/gmarik/vundle.git'
     " Bundle 'git://github.com/Lokaltog/vim-powerline.git'
     Bundle 'git://github.com/bling/vim-airline.git'
     Bundle 'git://github.com/jiangmiao/auto-pairs.git'
-    Bundle 'git://github.com/davidhalter/jedi-vim.git'
+    " Bundle 'git://github.com/davidhalter/jedi-vim.git'
     Bundle 'git://github.com/Valloric/ListToggle.git'
     Bundle 'git://github.com/tomtom/tcomment_vim.git'
     Bundle 'git://github.com/terryma/vim-multiple-cursors.git'
     Bundle 'git://github.com/Lokaltog/vim-easymotion.git'
     "Bundle 'git://github.com/vim-scripts/UltiSnips.git'
-    Bundle 'git://github.com/SirVer/ultisnips.git'
+    " Bundle 'git://github.com/SirVer/ultisnips.git'
     Bundle 'git://github.com/mileszs/ack.vim.git'
     Bundle 'git://github.com/sjl/threesome.vim.git'
     Bundle 'git://github.com/vim-scripts/vim-auto-save.git'
@@ -132,6 +132,7 @@ filetype plugin indent on     " required!
     set wildignore+=.hg,.git,.svn  " Version control
     set wildignore+=*.DS_Store     " OSX bullshit
     set wildignore+=*.pyc          " Python byte code
+    set wildignore+=__pycache__    " Python byte code
     set title                      " window title
                                    " the title of the window will be set to the value of 'titlestring'
                                    " (if it is not empty), or to: filename [+=-] (path) - VIM
@@ -488,7 +489,7 @@ filetype plugin indent on     " required!
     let NERDTreeKeepTreeInNewTab=0
     let NERDTreeMinimalUI=1 " Disables display of the 'Bookmarks' label and 'Press ? for help' text.
     let NERDTreeDirArrows=1 " Tells the NERD tree to use arrows instead of + ~ chars when displaying directories.
-    let NERDTreeIgnore=['\.pyc','\~$','\.swo$','\.swp$','\.git$','\.hg','\.svn','\.bzr']
+    let NERDTreeIgnore=['\.pyc','\~$','\.swo$','\.swp$','\.git$','\.hg','\.svn','\.bzr', '__pycache__']
     let NERDTreeBookmarksFile=$HOME . '/.vim/.NERDTreeBookmarks'
 
 " Tagbar settings
@@ -552,6 +553,8 @@ filetype plugin indent on     " required!
     let g:pymode_lint_maxheight = 3
     let g:pymode_lint_ignore = "E501,C0110,C0301"
     let g:pymode_rope = 0
+    let g:pymode_lint_on_write = 1
+    let g:pymode_lint_unmodified = 1
 
 " Powerline
     let Powerline_symbols = 'fancy'
@@ -581,6 +584,10 @@ filetype plugin indent on     " required!
 
 " Autosave
     let g:auto_save = 1
+    let g:auto_save_in_insert_mode = 0
+
+" Syntastic
+    let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['python'] }
 
 
 "=============================================================================
