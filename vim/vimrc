@@ -477,7 +477,7 @@ filetype plugin indent on     " required!
 
 " Colorscheme
     set background=dark
-    colorscheme Monokai
+    colorscheme monokai
 
 " NERDTree
     nmap <F2> :NERDTreeToggle<CR>
